@@ -1,0 +1,55 @@
+{
+  "name": "chaincare-ehr-api",
+  "version": "1.0.0",
+  "description": "T-MERN API for the blockchain EHR system (Express + MongoDB + Hyperledger Fabric Gateway)",
+  "main": "index.js",
+  "engines": {
+    "node": ">=22 <23"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "tsx src/server.ts",
+    "start:prod": "node dist/server.js",
+    "build": "tsc",
+    "bootstrap-admin": "node dist/bootstrap-admin.js",
+    "seed": "node dist/seed.js",
+    "test": "node --import tsx --test test/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.14.5",
+    "@hyperledger/fabric-gateway": "^1.12.1",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.5",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.7.0",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongodb-memory-server": "^10.1.2",
+    "mongoose": "^9.10.4",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/jest": "^30.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^26.6.4",
+    "@types/supertest": "^7.2.1",
+    "autocannon": "^8.0.0",
+    "axe-core": "^4.13.0",
+    "jest": "^30.5.2",
+    "supertest": "^7.3.1",
+    "ts-jest": "^29.4.14",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  },
+  "overrides": {
+    "uuid": "^11.1.1"
+  }
+}

@@ -1,0 +1,48 @@
+services:
+  - type: web
+    name: chaincare-ehr
+    runtime: node
+    plan: 1c-2g
+    buildCommand: npm ci --prefix backend && npm ci --prefix frontend && npm --prefix frontend run build && npm --prefix backend run build
+    startCommand: npm --prefix backend run start:prod
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+    envVars:
+      - key: NODE_VERSION
+        value: 22.22.0
+      - key: NODE_ENV
+        value: production
+      - key: LEDGER_MODE
+        value: fabric
+      - key: FABRIC_CHANNEL
+        value: ehrchannel
+      - key: FABRIC_CHAINCODE
+        value: ehr
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGO_URI
+        sync: false
+      - key: DATA_KEY_HEX
+        sync: false
+      - key: RATE_LIMIT_PER_MINUTE
+        value: 300
+      - key: FABRIC_ORG1_PEER_ENDPOINT
+        sync: false
+      - key: FABRIC_ORG1_PEER_HOST_ALIAS
+        sync: false
+      - key: FABRIC_ORG2_PEER_ENDPOINT
+        sync: false
+      - key: FABRIC_ORG2_PEER_HOST_ALIAS
+        sync: false
+      - key: FABRIC_ORG1_TLS_CERT_PATH
+        value: /etc/secrets/org1-tls-ca.pem
+      - key: FABRIC_ORG1_IDENTITY_CERT_PATH
+        value: /etc/secrets/org1-client-cert.pem
+      - key: FABRIC_ORG1_IDENTITY_KEY_PATH
+        value: /etc/secrets/org1-client-key.pem
+      - key: FABRIC_ORG2_TLS_CERT_PATH
+        value: /etc/secrets/org2-tls-ca.pem
+      - key: FABRIC_ORG2_IDENTITY_CERT_PATH
+        value: /etc/secrets/org2-client-cert.pem
+      - key: FABRIC_ORG2_IDENTITY_KEY_PATH
+        value: /etc/secrets/org2-client-key.pem
