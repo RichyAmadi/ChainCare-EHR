@@ -1,0 +1,425 @@
+<!doctype html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+<script>
+    function plotChart(divId, chartData) {
+        // Convert from stringified html, to valid JSON
+        const chartDetails = JSON.parse(chartData.replace(/&quot;/g,'"'));
+        new Chart(document.getElementById(divId), {
+            type: chartDetails.type,
+            data: {
+                labels: chartDetails.labels,
+                datasets: chartDetails.datasets
+            },
+            options: {
+                legend: { display: chartDetails.legend },
+                title: {
+                    display: true,
+                    text: chartDetails.title
+                }
+            }
+        });
+    }
+</script>
+<html>
+<head>
+    <title>Hyperledger Caliper Report</title>
+    <meta charset="UTF-8"/>
+    <style type="text/css">
+        .left-column {
+            position: fixed;
+            width:20%;
+        }
+        .left-column ul {
+            display: block;
+            padding: 0;
+            list-style: none;
+            border-bottom: 1px solid #d9d9d9;
+            font-size: 14px;
+        }
+        .left-column h2{
+            font-size: 24px;
+            font-weight: 400;
+            margin-block-end: 0.5em;
+        }
+        .left-column h3{
+            font-size: 18px;
+            font-weight: 400;
+            margin-block-end: 0.5em;
+        }
+        .left-column li{
+            margin-left: 10px;
+            margin-bottom: 5px;
+            color: #5e6b73;
+        }
+        .right-column {
+            margin-left: 22%;
+            width:60%;
+        }
+        .right-column table {
+            font-size:11px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        .right-column h2{
+            font-weight: 400;
+        }
+        .right-column h3{
+            font-weight: 400;
+        }
+        .right-column h4 {
+            font-weight: 400;
+            margin-block-end: 0;
+        }
+        .right-column th {
+            border-width: 1px;
+            font-size: small;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #f2f2f2;
+        }
+        .right-column td {
+            border-width: 1px;
+            font-size: small;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
+            font-weight: 400;
+        }
+        .tag {
+            margin-bottom: 10px;
+            padding: 5px 10px;
+        }
+        pre {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            -khtml-border-radius: 5px;
+            overflow:auto;
+            max-height:300px;
+            font-size:12px;
+        }
+        .charting {
+            display:flex;
+            flex-direction:row;
+            flex-wrap: wrap;
+            page-break-inside: auto;
+        }
+        .chart {
+            display:flex;
+            flex:1;
+            max-width: 50%;
+        }
+    </style>
+</head>
+<body style="font-family: IBM Plex Sans; font-weight: 200;">
+    <main>
+        <div class="left-column">
+            <img src="https://hyperledger.github.io/caliper/assets/img/hyperledger_caliper_logo_color.png" style="width:95%;" alt="">
+            <ul>
+                <h3>&nbspBasic information</h3>
+                <li>DLT: &nbsp<span style="font-weight: 500;">fabric</span></li>
+                <li>Name: &nbsp<span style="font-weight: 500;">ehr-performance</span></li>
+                <li>Description: &nbsp<span style="font-weight: 500;">EHR chaincode workloads at a fixed send rate of 100 TPS</span></li>
+                <li>Benchmark Rounds: &nbsp<span style="font-weight: 500;">7</span></li>
+                <li><a href="#benchmarkInfo">Details</a></li>
+            </ul>
+            <ul>
+                <h3>&nbspBenchmark results</h3>
+                <li><a href="#benchmarksummary">Summary</a></li>
+                    <li><a href="#W1 Create record">W1 Create record</a></li>
+                    <li><a href="#W2 Read record">W2 Read record</a></li>
+                    <li><a href="#W3 Grant consent">W3 Grant consent</a></li>
+                    <li><a href="#W4 Revoke consent">W4 Revoke consent</a></li>
+                    <li><a href="#W5 Audited access">W5 Audited access</a></li>
+                    <li><a href="#Setup query data">Setup query data</a></li>
+                    <li><a href="#W6 Query patient records">W6 Query patient records</a></li>
+            </ul>
+            <ul>
+                <h3>&nbspSystem under test</h3>
+                <li><a href="#sutdetails">Details</a></li>
+            </ul>
+        </div>
+
+        <div class="right-column">
+            <h1 style="padding-top: 3em; font-weight: 500;">Caliper report</h1>
+            <div style="border-bottom: 1px solid #d9d9d9; margin-bottom: 10px;" id="benchmarksummary">
+                <table style="min-width: 100%;">
+                    <h3>Summary of performance metrics</h3>
+                    <tr>
+                         <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                    </tr>
+
+                    <tr>
+                         <td>W1 Create record</td> <td>1000</td> <td>0</td> <td>32.8</td> <td>3.89</td> <td>0.22</td> <td>1.50</td> <td>31.7</td>
+                    </tr>
+                    <tr>
+                         <td>W2 Read record</td> <td>1000</td> <td>0</td> <td>100.2</td> <td>0.11</td> <td>0.01</td> <td>0.02</td> <td>99.9</td>
+                    </tr>
+                    <tr>
+                         <td>W3 Grant consent</td> <td>1000</td> <td>0</td> <td>44.8</td> <td>6.99</td> <td>0.30</td> <td>2.53</td> <td>42.2</td>
+                    </tr>
+                    <tr>
+                         <td>W4 Revoke consent</td> <td>1000</td> <td>0</td> <td>50.0</td> <td>8.32</td> <td>0.41</td> <td>4.44</td> <td>39.3</td>
+                    </tr>
+                    <tr>
+                         <td>W5 Audited access</td> <td>1000</td> <td>0</td> <td>40.9</td> <td>7.19</td> <td>0.25</td> <td>2.74</td> <td>39.6</td>
+                    </tr>
+                    <tr>
+                         <td>Setup query data</td> <td>40</td> <td>0</td> <td>21.0</td> <td>0.70</td> <td>0.17</td> <td>0.42</td> <td>18.9</td>
+                    </tr>
+                    <tr>
+                         <td>W6 Query patient records</td> <td>1000</td> <td>0</td> <td>97.9</td> <td>21.71</td> <td>0.30</td> <td>16.29</td> <td>37.9</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="W1 Create record">
+                <h2>Benchmark round: W1 Create record</h2>
+                <p></p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 100
+</pre>
+                        <h3>Performance metrics for W1 Create record</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>W1 Create record</td> <td>1000</td> <td>0</td> <td>32.8</td> <td>3.89</td> <td>0.22</td> <td>1.50</td> <td>31.7</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for W1 Create record</h3>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="W2 Read record">
+                <h2>Benchmark round: W2 Read record</h2>
+                <p></p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 100
+</pre>
+                        <h3>Performance metrics for W2 Read record</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>W2 Read record</td> <td>1000</td> <td>0</td> <td>100.2</td> <td>0.11</td> <td>0.01</td> <td>0.02</td> <td>99.9</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for W2 Read record</h3>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="W3 Grant consent">
+                <h2>Benchmark round: W3 Grant consent</h2>
+                <p></p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 100
+</pre>
+                        <h3>Performance metrics for W3 Grant consent</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>W3 Grant consent</td> <td>1000</td> <td>0</td> <td>44.8</td> <td>6.99</td> <td>0.30</td> <td>2.53</td> <td>42.2</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for W3 Grant consent</h3>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="W4 Revoke consent">
+                <h2>Benchmark round: W4 Revoke consent</h2>
+                <p></p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 100
+</pre>
+                        <h3>Performance metrics for W4 Revoke consent</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>W4 Revoke consent</td> <td>1000</td> <td>0</td> <td>50.0</td> <td>8.32</td> <td>0.41</td> <td>4.44</td> <td>39.3</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for W4 Revoke consent</h3>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="W5 Audited access">
+                <h2>Benchmark round: W5 Audited access</h2>
+                <p></p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 100
+</pre>
+                        <h3>Performance metrics for W5 Audited access</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>W5 Audited access</td> <td>1000</td> <td>0</td> <td>40.9</td> <td>7.19</td> <td>0.25</td> <td>2.74</td> <td>39.6</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for W5 Audited access</h3>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="Setup query data">
+                <h2>Benchmark round: Setup query data</h2>
+                <p></p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 20
+</pre>
+                        <h3>Performance metrics for Setup query data</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>Setup query data</td> <td>40</td> <td>0</td> <td>21.0</td> <td>0.70</td> <td>0.17</td> <td>0.42</td> <td>18.9</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for Setup query data</h3>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;" id="W6 Query patient records">
+                <h2>Benchmark round: W6 Query patient records</h2>
+                <p></p>
+                <pre style="overflow: visible;white-space: pre-wrap;max-height:100%;">rateControl:
+  type: fixed-rate
+  opts:
+    tps: 100
+</pre>
+                        <h3>Performance metrics for W6 Query patient records</h3>
+                            <table style="min-width: 100%;">
+                                <tr>
+                                     <th>Name</th> <th>Succ</th> <th>Fail</th> <th>Send Rate (TPS)</th> <th>Max Latency (s)</th> <th>Min Latency (s)</th> <th>Avg Latency (s)</th> <th>Throughput (TPS)</th>
+                                </tr>
+                                <tr>
+                                     <td>W6 Query patient records</td> <td>1000</td> <td>0</td> <td>97.9</td> <td>21.71</td> <td>0.30</td> <td>16.29</td> <td>37.9</td>
+                                </tr>
+                            </table>
+                        <h3>Resource utilization for W6 Query patient records</h3>
+            </div>
+
+            <div style="border-bottom: 1px solid #d9d9d9; padding-bottom: 10px;">
+                <h2>Test Environment</h2>
+                <h3>benchmark config</h3>
+                <pre id="benchmarkInfo" style="overflow: visible;white-space: pre-wrap;max-height:100%;">name: ehr-performance
+description: EHR chaincode workloads at a fixed send rate of 100 TPS
+workers:
+  number: 2
+rounds:
+  - label: W1 Create record
+    txNumber: 1000
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 100
+    workload:
+      module: workload&#x2F;createRecord.js
+      arguments:
+        prefix: main
+        registerPatient: true
+  - label: W2 Read record
+    txNumber: 1000
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 100
+    workload:
+      module: workload&#x2F;readRecord.js
+      arguments:
+        prefix: main
+        poolSize: 500
+  - label: W3 Grant consent
+    txNumber: 1000
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 100
+    workload:
+      module: workload&#x2F;grantAccess.js
+      arguments:
+        prefix: main
+  - label: W4 Revoke consent
+    txNumber: 1000
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 100
+    workload:
+      module: workload&#x2F;revokeAccess.js
+      arguments:
+        prefix: main
+  - label: W5 Audited access
+    txNumber: 1000
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 100
+    workload:
+      module: workload&#x2F;accessRecord.js
+      arguments:
+        prefix: main
+        poolSize: 500
+  - label: Setup query data
+    txNumber: 40
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 20
+    workload:
+      module: workload&#x2F;createRecord.js
+      arguments:
+        prefix: qry
+        registerPatient: true
+  - label: W6 Query patient records
+    txNumber: 1000
+    rateControl:
+      type: fixed-rate
+      opts:
+        tps: 100
+    workload:
+      module: workload&#x2F;queryPatient.js
+      arguments:
+        prefix: qry
+monitors:
+  resource:
+    - module: docker
+      options:
+        interval: 2
+        containers:
+          - peer0.org1.example.com
+          - peer0.org2.example.com
+          - orderer.example.com
+          - couchdb0
+          - couchdb1
+          - peer0org1_ehr_ccaas
+          - peer0org2_ehr_ccaas
+</pre>
+                <h3>SUT</h3>
+                <pre id="sutdetails">not provided</pre>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

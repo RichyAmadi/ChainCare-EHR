@@ -1,0 +1,22 @@
+[0m[7m[1m[32m PASS [39m[22m[27m[0m [2mtest/[22m[1mehrContract.test.ts[22m ([0m[1m[41m9.172 s[49m[22m[0m)
+  EhrContract
+    [32m✓[39m [2mregisters a patient under the calling organisation (5 ms)[22m
+    [32m✓[39m [2mrejects duplicate patient registration (48 ms)[22m
+    [32m✓[39m [2mhome facility can anchor a record (2 ms)[22m
+    [32m✓[39m [2mrejects a malformed SHA-256 digest (1 ms)[22m
+    [32m✓[39m [2manother facility without consent cannot add a record, and the attempt is audited (3 ms)[22m
+    [32m✓[39m [2monly the patient can grant consent (1 ms)[22m
+    [32m✓[39m [2mconsent allows access; revocation removes it (2 ms)[22m
+    [32m✓[39m [2mscoped consent covers only the named record type (1 ms)[22m
+    [32m✓[39m [2mexpired consent is refused (1 ms)[22m
+    [32m✓[39m [2mconsent is bound to the grantee organisation (1 ms)[22m
+    [32m✓[39m [2memergency access needs a justification and is flagged (3 ms)[22m
+    [32m✓[39m [2mintegrity check detects a changed hash (1 ms)[22m
+    [32m✓[39m [2mrecord update increments the version (2 ms)[22m
+    [32m✓[39m [2maudit trail lists every decision for the patient (2 ms)[22m
+
+[1mTest Suites: [22m[1m[32m1 passed[39m[22m, 1 total
+[1mTests:       [22m[1m[32m14 passed[39m[22m, 14 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        [1m[33m10.392 s[39m[22m
+[2mRan all test suites[22m[2m matching [22m/test/i[2m.[22m

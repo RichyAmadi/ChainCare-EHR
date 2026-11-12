@@ -1,0 +1,266 @@
+{
+  "W1 Create record": {
+    "peer0.org1.example.com": {
+      "cpuAvg": 16.8,
+      "cpuMax": 31.0,
+      "memMaxMiB": 187.1,
+      "samples": 22
+    },
+    "peer0.org2.example.com": {
+      "cpuAvg": 11.6,
+      "cpuMax": 21.6,
+      "memMaxMiB": 127.6,
+      "samples": 22
+    },
+    "orderer.example.com": {
+      "cpuAvg": 4.1,
+      "cpuMax": 10.9,
+      "memMaxMiB": 133.5,
+      "samples": 22
+    },
+    "couchdb0": {
+      "cpuAvg": 21.1,
+      "cpuMax": 56.4,
+      "memMaxMiB": 217.3,
+      "samples": 22
+    },
+    "couchdb1": {
+      "cpuAvg": 20.5,
+      "cpuMax": 44.2,
+      "memMaxMiB": 160.0,
+      "samples": 22
+    },
+    "peer0org1_ehr_ccaas": {
+      "cpuAvg": 6.4,
+      "cpuMax": 16.6,
+      "memMaxMiB": 126.4,
+      "samples": 22
+    },
+    "peer0org2_ehr_ccaas": {
+      "cpuAvg": 6.6,
+      "cpuMax": 16.7,
+      "memMaxMiB": 103.6,
+      "samples": 22
+    }
+  },
+  "W2 Read record": {
+    "peer0.org1.example.com": {
+      "cpuAvg": 12.5,
+      "cpuMax": 22.7,
+      "memMaxMiB": 161.5,
+      "samples": 15
+    },
+    "peer0.org2.example.com": {
+      "cpuAvg": 1.0,
+      "cpuMax": 1.2,
+      "memMaxMiB": 127.4,
+      "samples": 15
+    },
+    "orderer.example.com": {
+      "cpuAvg": 0.0,
+      "cpuMax": 0.1,
+      "memMaxMiB": 107.5,
+      "samples": 15
+    },
+    "couchdb0": {
+      "cpuAvg": 7.2,
+      "cpuMax": 15.2,
+      "memMaxMiB": 201.3,
+      "samples": 15
+    },
+    "couchdb1": {
+      "cpuAvg": 0.3,
+      "cpuMax": 0.5,
+      "memMaxMiB": 145.8,
+      "samples": 15
+    },
+    "peer0org1_ehr_ccaas": {
+      "cpuAvg": 6.6,
+      "cpuMax": 11.6,
+      "memMaxMiB": 103.7,
+      "samples": 15
+    },
+    "peer0org2_ehr_ccaas": {
+      "cpuAvg": 0.0,
+      "cpuMax": 0.0,
+      "memMaxMiB": 103.3,
+      "samples": 15
+    }
+  },
+  "W3 Grant consent": {
+    "peer0.org1.example.com": {
+      "cpuAvg": 16.9,
+      "cpuMax": 30.5,
+      "memMaxMiB": 161.8,
+      "samples": 19
+    },
+    "peer0.org2.example.com": {
+      "cpuAvg": 11.1,
+      "cpuMax": 20.1,
+      "memMaxMiB": 127.7,
+      "samples": 19
+    },
+    "orderer.example.com": {
+      "cpuAvg": 4.1,
+      "cpuMax": 9.0,
+      "memMaxMiB": 127.2,
+      "samples": 19
+    },
+    "couchdb0": {
+      "cpuAvg": 28.2,
+      "cpuMax": 76.1,
+      "memMaxMiB": 234.3,
+      "samples": 19
+    },
+    "couchdb1": {
+      "cpuAvg": 27.0,
+      "cpuMax": 91.0,
+      "memMaxMiB": 177.8,
+      "samples": 19
+    },
+    "peer0org1_ehr_ccaas": {
+      "cpuAvg": 4.5,
+      "cpuMax": 12.9,
+      "memMaxMiB": 111.3,
+      "samples": 19
+    },
+    "peer0org2_ehr_ccaas": {
+      "cpuAvg": 5.0,
+      "cpuMax": 13.1,
+      "memMaxMiB": 105.7,
+      "samples": 19
+    }
+  },
+  "W4 Revoke consent": {
+    "peer0.org1.example.com": {
+      "cpuAvg": 15.5,
+      "cpuMax": 25.6,
+      "memMaxMiB": 157.8,
+      "samples": 20
+    },
+    "peer0.org2.example.com": {
+      "cpuAvg": 12.2,
+      "cpuMax": 25.4,
+      "memMaxMiB": 128.5,
+      "samples": 20
+    },
+    "orderer.example.com": {
+      "cpuAvg": 4.4,
+      "cpuMax": 9.5,
+      "memMaxMiB": 142.4,
+      "samples": 20
+    },
+    "couchdb0": {
+      "cpuAvg": 25.3,
+      "cpuMax": 48.5,
+      "memMaxMiB": 205.9,
+      "samples": 20
+    },
+    "couchdb1": {
+      "cpuAvg": 33.2,
+      "cpuMax": 97.0,
+      "memMaxMiB": 172.9,
+      "samples": 20
+    },
+    "peer0org1_ehr_ccaas": {
+      "cpuAvg": 3.6,
+      "cpuMax": 8.9,
+      "memMaxMiB": 113.8,
+      "samples": 20
+    },
+    "peer0org2_ehr_ccaas": {
+      "cpuAvg": 4.5,
+      "cpuMax": 10.5,
+      "memMaxMiB": 96.7,
+      "samples": 20
+    }
+  },
+  "W5 Audited access": {
+    "peer0.org1.example.com": {
+      "cpuAvg": 15.2,
+      "cpuMax": 29.6,
+      "memMaxMiB": 138.9,
+      "samples": 21
+    },
+    "peer0.org2.example.com": {
+      "cpuAvg": 12.2,
+      "cpuMax": 20.5,
+      "memMaxMiB": 128.9,
+      "samples": 21
+    },
+    "orderer.example.com": {
+      "cpuAvg": 4.0,
+      "cpuMax": 9.3,
+      "memMaxMiB": 151.3,
+      "samples": 21
+    },
+    "couchdb0": {
+      "cpuAvg": 25.8,
+      "cpuMax": 82.9,
+      "memMaxMiB": 208.3,
+      "samples": 21
+    },
+    "couchdb1": {
+      "cpuAvg": 23.3,
+      "cpuMax": 69.9,
+      "memMaxMiB": 183.4,
+      "samples": 21
+    },
+    "peer0org1_ehr_ccaas": {
+      "cpuAvg": 4.3,
+      "cpuMax": 12.6,
+      "memMaxMiB": 116.9,
+      "samples": 21
+    },
+    "peer0org2_ehr_ccaas": {
+      "cpuAvg": 4.0,
+      "cpuMax": 11.7,
+      "memMaxMiB": 101.7,
+      "samples": 21
+    }
+  },
+  "W6 Query patient records": {
+    "peer0.org1.example.com": {
+      "cpuAvg": 17.6,
+      "cpuMax": 30.9,
+      "memMaxMiB": 210.2,
+      "samples": 19
+    },
+    "peer0.org2.example.com": {
+      "cpuAvg": 0.8,
+      "cpuMax": 1.4,
+      "memMaxMiB": 128.7,
+      "samples": 19
+    },
+    "orderer.example.com": {
+      "cpuAvg": 0.0,
+      "cpuMax": 0.1,
+      "memMaxMiB": 128.0,
+      "samples": 19
+    },
+    "couchdb0": {
+      "cpuAvg": 73.3,
+      "cpuMax": 113.6,
+      "memMaxMiB": 290.4,
+      "samples": 19
+    },
+    "couchdb1": {
+      "cpuAvg": 0.2,
+      "cpuMax": 0.4,
+      "memMaxMiB": 136.5,
+      "samples": 19
+    },
+    "peer0org1_ehr_ccaas": {
+      "cpuAvg": 10.1,
+      "cpuMax": 20.3,
+      "memMaxMiB": 128.9,
+      "samples": 19
+    },
+    "peer0org2_ehr_ccaas": {
+      "cpuAvg": 0.0,
+      "cpuMax": 0.0,
+      "memMaxMiB": 85.6,
+      "samples": 19
+    }
+  }
+}

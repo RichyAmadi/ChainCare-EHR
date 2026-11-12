@@ -1,0 +1,64 @@
+{
+  "system": "fabric",
+  "tasks": {
+    "Broadband (no throttling)": {
+      "T1 Sign in (clinician)": {
+        "meanMs": 291,
+        "sdMs": 38,
+        "n": 3
+      },
+      "T2 Find patient and open a record": {
+        "meanMs": 2450,
+        "sdMs": 16,
+        "n": 3
+      },
+      "T3 Add a clinical record": {
+        "meanMs": 2367,
+        "sdMs": 6,
+        "n": 3
+      },
+      "T4 Patient grants consent": {
+        "meanMs": 2415,
+        "sdMs": 4,
+        "n": 3
+      },
+      "T5 Patient views access log": {
+        "meanMs": 58,
+        "sdMs": 5,
+        "n": 3
+      }
+    },
+    "Throttled 3G (1.6 Mbps down, 0.75 Mbps up, 300 ms RTT)": {
+      "T1 Sign in (clinician)": {
+        "meanMs": 1777,
+        "sdMs": 9,
+        "n": 3
+      },
+      "T2 Find patient and open a record": {
+        "meanMs": 3187,
+        "sdMs": 21,
+        "n": 3
+      },
+      "T3 Add a clinical record": {
+        "meanMs": 2351,
+        "sdMs": 6,
+        "n": 3
+      },
+      "T4 Patient grants consent": {
+        "meanMs": 2696,
+        "sdMs": 8,
+        "n": 3
+      },
+      "T5 Patient views access log": {
+        "meanMs": 817,
+        "sdMs": 14,
+        "n": 3
+      }
+    }
+  },
+  "accessibility": {
+    "Sign-in page": [],
+    "Clinician: patient records": [],
+    "Patient: consent page": []
+  }
+}

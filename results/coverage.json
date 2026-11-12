@@ -1,0 +1,1 @@
+{"chaincode":{"lines":74.3,"statements":70.62,"functions":77.27,"branches":58},"api":{"lines":79.40,"branches":75.00,"functions":80.00,"note":"FabricLedger class (ledger.ts lines 28-91) is exercised by the Caliper and scenario tests, not by the unit tests"}}

@@ -1,0 +1,12 @@
+test:
+  name: ehr-smoke
+  workers: { number: 2 }
+  rounds:
+    - label: W1 Create record
+      txNumber: 40
+      rateControl: { type: fixed-rate, opts: { tps: 20 } }
+      workload: { module: workload/createRecord.js, arguments: { prefix: smoke, registerPatient: true } }
+    - label: W2 Read record
+      txNumber: 40
+      rateControl: { type: fixed-rate, opts: { tps: 20 } }
+      workload: { module: workload/readRecord.js, arguments: { prefix: smoke, poolSize: 20 } }

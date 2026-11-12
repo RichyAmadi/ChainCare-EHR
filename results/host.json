@@ -1,0 +1,14 @@
+{
+  "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+  "vcpus": 2,
+  "memGiB": 7.8,
+  "os": "Ubuntu 24.04.5 LTS",
+  "kernel": "6.18.44-fc-v70",
+  "docker": "29.8.2",
+  "imagesGB": "8.261GB",
+  "fabricImages": "couchdb:3.4.2 419MB\nhyperledger/fabric-baseos:2.5 210MB\nhyperledger/fabric-baseos:2.5.10 210MB\nhyperledger/fabric-ca:1.5 333MB\nhyperledger/fabric-ca:1.5.13 333MB\nhyperledger/fabric-orderer:2.5 168MB\nhyperledger/fabric-orderer:2.5.10 168MB\nhyperledger/fabric-peer:2.5 215MB\nhyperledger/fabric-peer:2.5.10 215MB\nmongo:7 1.18GB",
+  "ledgerSize": "349M",
+  "couchSize": "90877 60.9",
+  "frontendBundleKB": "164",
+  "mongoSizeMiB": "29"
+}

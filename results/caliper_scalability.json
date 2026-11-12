@@ -1,0 +1,136 @@
+{
+  "writes": [
+    {
+      "target": 25,
+      "succ": 502,
+      "fail": 0,
+      "send": 25.1,
+      "maxLat": 2.11,
+      "minLat": 0.07,
+      "avgLat": 0.28,
+      "tps": 22.7
+    },
+    {
+      "target": 50,
+      "succ": 1002,
+      "fail": 0,
+      "send": 50.1,
+      "maxLat": 2.1,
+      "minLat": 0.07,
+      "avgLat": 0.26,
+      "tps": 45.3
+    },
+    {
+      "target": 100,
+      "succ": 1669,
+      "fail": 0,
+      "send": 83.5,
+      "maxLat": 12.18,
+      "minLat": 0.19,
+      "avgLat": 5.05,
+      "tps": 64.0
+    },
+    {
+      "target": 150,
+      "succ": 1740,
+      "fail": 0,
+      "send": 84.9,
+      "maxLat": 15.37,
+      "minLat": 0.2,
+      "avgLat": 7.85,
+      "tps": 65.7
+    },
+    {
+      "target": 200,
+      "succ": 1796,
+      "fail": 0,
+      "send": 88.8,
+      "maxLat": 11.84,
+      "minLat": 0.17,
+      "avgLat": 7.21,
+      "tps": 65.4
+    },
+    {
+      "target": 250,
+      "succ": 1619,
+      "fail": 0,
+      "send": 80.8,
+      "maxLat": 17.08,
+      "minLat": 0.21,
+      "avgLat": 10.75,
+      "tps": 62.6
+    },
+    {
+      "target": 300,
+      "succ": 1654,
+      "fail": 0,
+      "send": 82.7,
+      "maxLat": 12.94,
+      "minLat": 0.34,
+      "avgLat": 6.6,
+      "tps": 68.2
+    }
+  ],
+  "reads": [
+    {
+      "target": 100,
+      "succ": 2002,
+      "fail": 0,
+      "send": 100.1,
+      "maxLat": 0.05,
+      "minLat": 0.0,
+      "avgLat": 0.01,
+      "tps": 100.1
+    },
+    {
+      "target": 200,
+      "succ": 4002,
+      "fail": 0,
+      "send": 200.1,
+      "maxLat": 0.05,
+      "minLat": 0.0,
+      "avgLat": 0.01,
+      "tps": 200.0
+    },
+    {
+      "target": 300,
+      "succ": 6002,
+      "fail": 0,
+      "send": 300.1,
+      "maxLat": 0.08,
+      "minLat": 0.0,
+      "avgLat": 0.01,
+      "tps": 299.9
+    },
+    {
+      "target": 400,
+      "succ": 7969,
+      "fail": 0,
+      "send": 398.5,
+      "maxLat": 0.14,
+      "minLat": 0.0,
+      "avgLat": 0.02,
+      "tps": 398.4
+    },
+    {
+      "target": 500,
+      "succ": 8510,
+      "fail": 0,
+      "send": 425.6,
+      "maxLat": 0.17,
+      "minLat": 0.0,
+      "avgLat": 0.02,
+      "tps": 425.1
+    },
+    {
+      "target": 600,
+      "succ": 8699,
+      "fail": 0,
+      "send": 434.9,
+      "maxLat": 0.22,
+      "minLat": 0.0,
+      "avgLat": 0.03,
+      "tps": 434.8
+    }
+  ]
+}

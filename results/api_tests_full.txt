@@ -1,0 +1,28 @@
+▶ crypto service
+  ✔ AES-256-GCM round trip (1.073802ms)
+  ✔ tampered ciphertext changes the SHA-256 digest (2.7278ms)
+✔ crypto service (215.741567ms)
+▶ authentication
+  ✔ health endpoint is public (3.645784ms)
+  ✔ wrong password is rejected (8.071999ms)
+  ✔ protected routes need a token (5.955985ms)
+  ✔ security headers are set (2.964822ms)
+✔ authentication (21.144036ms)
+▶ patients, records and consent
+  ✔ clinician enrols a patient (188.102716ms)
+  ✔ record is stored encrypted and readable by the enrolling clinician (233.678242ms)
+  ✔ clinician at another facility is denied until the patient consents (241.835318ms)
+  ✔ tampered off-chain record returns 409 (187.758953ms)
+  ✔ patient cannot create clinical records (170.159253ms)
+  ✔ invalid record type fails validation (186.46947ms)
+  ✔ audit trail is hidden from clinicians but visible to auditors (185.894251ms)
+  ✔ records list is paginated (211.863993ms)
+✔ patients, records and consent (1606.614959ms)
+ℹ tests 14
+ℹ suites 3
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2755.711815

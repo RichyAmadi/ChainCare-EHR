@@ -1,0 +1,148 @@
+{
+  "system": "centralised",
+  "integrity": {
+    "injected": 100,
+    "payloadOnly": {
+      "injected": 50,
+      "detected": 50
+    },
+    "insiderWithHashRewrite": {
+      "injected": 50,
+      "detected": 0
+    },
+    "detectionRatePct": 50,
+    "meanCheckMs": 5,
+    "auditLogDeletion": {
+      "deletedEvents": 201,
+      "eventsStillVisible": 0
+    }
+  },
+  "accessControl": {
+    "requests": 504,
+    "TP": 154,
+    "TN": 350,
+    "FP": 0,
+    "FN": 0,
+    "accuracyPct": 100,
+    "falseAcceptanceRatePct": 0,
+    "falseRejectionRatePct": 0,
+    "perActor": {
+      "patient (owner)": {
+        "requests": 72,
+        "correct": 72
+      },
+      "enrolling clinician, consent ALL": {
+        "requests": 72,
+        "correct": 72
+      },
+      "clinician, consent LAB_RESULT only": {
+        "requests": 72,
+        "correct": 72
+      },
+      "clinician, expired consent": {
+        "requests": 72,
+        "correct": 72
+      },
+      "clinician, revoked consent": {
+        "requests": 72,
+        "correct": 72
+      },
+      "auditor, no consent": {
+        "requests": 72,
+        "correct": 72
+      },
+      "another patient": {
+        "requests": 72,
+        "correct": 72
+      }
+    }
+  },
+  "attacks": [
+    {
+      "test": "No token reads a record",
+      "status": 401,
+      "blocked": true
+    },
+    {
+      "test": "Forged JWT (wrong signing key)",
+      "status": 401,
+      "blocked": true
+    },
+    {
+      "test": "JWT with alg=none",
+      "status": 401,
+      "blocked": true
+    },
+    {
+      "test": "Expired JWT",
+      "status": 401,
+      "blocked": true
+    },
+    {
+      "test": "Patient creates a clinical record",
+      "status": 403,
+      "blocked": true
+    },
+    {
+      "test": "Patient lists another patient's records",
+      "status": 403,
+      "blocked": true
+    },
+    {
+      "test": "Patient reads another patient's audit log",
+      "status": 403,
+      "blocked": true
+    },
+    {
+      "test": "Clinician grants consent on a patient's behalf",
+      "status": 403,
+      "blocked": true
+    },
+    {
+      "test": "Clinician reads the audit trail",
+      "status": 403,
+      "blocked": true
+    },
+    {
+      "test": "Clinician creates staff accounts",
+      "status": 403,
+      "blocked": true
+    },
+    {
+      "test": "NoSQL injection in login",
+      "status": 400,
+      "blocked": true
+    },
+    {
+      "test": "Malformed record hash input (schema validation)",
+      "status": 400,
+      "blocked": true
+    },
+    {
+      "test": "Emergency access without justification",
+      "status": 400,
+      "blocked": true
+    }
+  ],
+  "scenarios": {
+    "S1_referral": {
+      "runs": 10,
+      "deniedMs": 4.1,
+      "grantMs": 4,
+      "allowedMs": 4.1,
+      "endToEndMs": 12.2,
+      "endToEndSd": 1.3
+    },
+    "S2_emergency": {
+      "runs": 10,
+      "meanMs": 4.3,
+      "allOpened": true,
+      "flaggedInAudit": true
+    },
+    "S3_revocation": {
+      "runs": 10,
+      "revokeMs": 2.7,
+      "deniedOnFirstAttempt": 10
+    }
+  }
+}

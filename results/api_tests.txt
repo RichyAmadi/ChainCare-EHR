@@ -1,0 +1,14 @@
+    ok 1 - AES-256-GCM round trip
+    ok 2 - tampered ciphertext changes the SHA-256 digest
+    ok 1 - health endpoint is public
+    ok 2 - wrong password is rejected
+    ok 3 - protected routes need a token
+    ok 4 - security headers are set
+    ok 1 - clinician enrols a patient
+    ok 2 - record is stored encrypted and readable by the enrolling clinician
+    ok 3 - clinician at another facility is denied until the patient consents
+    ok 4 - tampered off-chain record returns 409
+    ok 5 - patient cannot create clinical records
+    ok 6 - invalid record type fails validation
+    ok 7 - audit trail is hidden from clinicians but visible to auditors
+    ok 8 - records list is paginated

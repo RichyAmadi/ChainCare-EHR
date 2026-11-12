@@ -1,0 +1,41 @@
+%%{init: {'theme':'base','themeVariables':{'fontFamily':'Arial','fontSize':'15px','primaryColor':'#e3f1ec','primaryBorderColor':'#0f6b4f','actorBkg':'#e3f1ec','actorBorder':'#0f6b4f','noteBkgColor':'#fdf1dc','noteBorderColor':'#8a5a00','signalColor':'#1c2421','signalTextColor':'#1c2421'}}}%%
+sequenceDiagram
+
+  actor C as Clinician (browser)
+  participant API as Express API
+  participant M as MongoDB
+  participant G as Fabric Gateway (peer)
+  participant CC as EHR chaincode
+  participant O as Raft orderer
+  rect rgb(240,247,244)
+  Note over C,O: A. Create a record
+  C->>API: POST /api/records (JWT)
+  API->>API: validate (Zod), AES-256-GCM encrypt, SHA-256 hash
+  API->>M: save encrypted payload + hash
+  API->>G: endorse CreateRecord(recordId, patientId, hash)
+  G->>CC: simulate on Org1 and Org2 peers
+  CC-->>G: check author rights, write anchor + audit event
+  API->>G: submit endorsed transaction
+  G->>O: order into block
+  O-->>G: block committed on every peer
+  API-->>C: 201 recordId + ledger tx id
+  end
+  rect rgb(244,246,251)
+  Note over C,O: B. Open a record (audited, consent-checked)
+  C->>API: GET /api/records/:id
+  API->>G: submit AccessRecord(recordId, actorId)
+  G->>CC: check consent (owner / active / scope / expiry / org)
+  CC-->>G: ALLOWED or DENIED + audit event on ledger
+  alt denied
+    API-->>C: 403 Access denied (attempt logged)
+  else allowed
+    API->>M: fetch encrypted payload
+    API->>API: recompute SHA-256, compare with ledger hash
+    alt hashes differ
+      API-->>C: 409 INTEGRITY_VIOLATION
+    else hashes match
+      API->>API: decrypt
+      API-->>C: 200 record + integrity proof
+    end
+  end
+  end

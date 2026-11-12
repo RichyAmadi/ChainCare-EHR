@@ -1,0 +1,97 @@
+{
+  "system": "fabric",
+  "tasks": {
+    "Broadband (no throttling)": {
+      "T1 Sign in (clinician)": {
+        "meanMs": 405,
+        "sdMs": 12,
+        "n": 3
+      },
+      "T2 Find patient and open a record": {
+        "meanMs": 2553,
+        "sdMs": 33,
+        "n": 3
+      },
+      "T3 Add a clinical record": {
+        "meanMs": 2416,
+        "sdMs": 10,
+        "n": 3
+      },
+      "T4 Patient grants consent": {
+        "meanMs": 2493,
+        "sdMs": 14,
+        "n": 3
+      },
+      "T5 Patient views access log": {
+        "meanMs": 82,
+        "sdMs": 3,
+        "n": 3
+      }
+    },
+    "Throttled 3G (1.6 Mbps down, 0.75 Mbps up, 300 ms RTT)": {
+      "T1 Sign in (clinician)": {
+        "meanMs": 1856,
+        "sdMs": 5,
+        "n": 3
+      },
+      "T2 Find patient and open a record": {
+        "meanMs": 3152,
+        "sdMs": 230,
+        "n": 3
+      },
+      "T3 Add a clinical record": {
+        "meanMs": 2410,
+        "sdMs": 5,
+        "n": 3
+      },
+      "T4 Patient grants consent": {
+        "meanMs": 2795,
+        "sdMs": 47,
+        "n": 3
+      },
+      "T5 Patient views access log": {
+        "meanMs": 845,
+        "sdMs": 3,
+        "n": 3
+      }
+    }
+  },
+  "accessibility": {
+    "Sign-in page": [
+      {
+        "id": "label",
+        "impact": "critical",
+        "nodes": 2,
+        "help": "Form elements must have labels"
+      }
+    ],
+    "Clinician: patient records": [
+      {
+        "id": "label",
+        "impact": "critical",
+        "nodes": 1,
+        "help": "Form elements must have labels"
+      },
+      {
+        "id": "select-name",
+        "impact": "critical",
+        "nodes": 1,
+        "help": "Select element must have an accessible name"
+      }
+    ],
+    "Patient: consent page": [
+      {
+        "id": "label",
+        "impact": "critical",
+        "nodes": 1,
+        "help": "Form elements must have labels"
+      },
+      {
+        "id": "select-name",
+        "impact": "critical",
+        "nodes": 2,
+        "help": "Select element must have an accessible name"
+      }
+    ]
+  }
+}

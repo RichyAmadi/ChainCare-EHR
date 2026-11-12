@@ -1,0 +1,164 @@
+[
+  {
+    "workload": "W1 Create record",
+    "runs": 3,
+    "succ": 3000,
+    "fail": 0,
+    "send": [
+      67.33,
+      1.35
+    ],
+    "tps": [
+      57.53,
+      1.15
+    ],
+    "avgLat": [
+      2.63,
+      0.42
+    ],
+    "maxLat": [
+      5.83,
+      1.24
+    ],
+    "minLat": [
+      0.19,
+      0.01
+    ],
+    "successPct": 100.0
+  },
+  {
+    "workload": "W2 Read record",
+    "runs": 3,
+    "succ": 3000,
+    "fail": 0,
+    "send": [
+      100.2,
+      0.0
+    ],
+    "tps": [
+      100.13,
+      0.05
+    ],
+    "avgLat": [
+      0.01,
+      0.0
+    ],
+    "maxLat": [
+      0.07,
+      0.0
+    ],
+    "minLat": [
+      0.0,
+      0.0
+    ],
+    "successPct": 100.0
+  },
+  {
+    "workload": "W3 Grant consent",
+    "runs": 3,
+    "succ": 3000,
+    "fail": 0,
+    "send": [
+      68.1,
+      1.0
+    ],
+    "tps": [
+      62.13,
+      3.64
+    ],
+    "avgLat": [
+      2.45,
+      1.36
+    ],
+    "maxLat": [
+      5.85,
+      2.79
+    ],
+    "minLat": [
+      0.14,
+      0.01
+    ],
+    "successPct": 100.0
+  },
+  {
+    "workload": "W4 Revoke consent",
+    "runs": 3,
+    "succ": 3000,
+    "fail": 0,
+    "send": [
+      64.57,
+      1.68
+    ],
+    "tps": [
+      60.77,
+      2.28
+    ],
+    "avgLat": [
+      1.75,
+      0.48
+    ],
+    "maxLat": [
+      4.41,
+      1.39
+    ],
+    "minLat": [
+      0.18,
+      0.05
+    ],
+    "successPct": 100.0
+  },
+  {
+    "workload": "W5 Audited access",
+    "runs": 3,
+    "succ": 3000,
+    "fail": 0,
+    "send": [
+      67.1,
+      7.25
+    ],
+    "tps": [
+      59.23,
+      7.13
+    ],
+    "avgLat": [
+      3.07,
+      2.29
+    ],
+    "maxLat": [
+      5.84,
+      3.25
+    ],
+    "minLat": [
+      0.13,
+      0.02
+    ],
+    "successPct": 100.0
+  },
+  {
+    "workload": "W6 Query patient records",
+    "runs": 3,
+    "succ": 3000,
+    "fail": 0,
+    "send": [
+      99.63,
+      0.59
+    ],
+    "tps": [
+      63.57,
+      6.27
+    ],
+    "avgLat": [
+      5.85,
+      1.31
+    ],
+    "maxLat": [
+      9.3,
+      1.93
+    ],
+    "minLat": [
+      0.05,
+      0.02
+    ],
+    "successPct": 100.0
+  }
+]
