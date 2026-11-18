@@ -11,7 +11,7 @@ This Blueprint deploys the web app and API as one Node service. It expects a per
 
 ## Render environment and secret files
 
-The Blueprint generates `JWT_SECRET`. Set these secret environment variables in Render:
+The Blueprint generates `JWT_SECRET`. If you created the service manually, add `JWT_SECRET` yourself (64+ random characters, e.g. `openssl rand -hex 48`); without it the app starts with a random per-process key and signs everyone out on each restart. Set these secret environment variables in Render:
 
 - `MONGO_URI`: persistent MongoDB connection string.
 - `DATA_KEY_HEX`: a new, unique, randomly generated 32-byte key represented by exactly 64 hexadecimal characters. Back it up in an approved secrets vault. Losing it makes stored clinical content unreadable.

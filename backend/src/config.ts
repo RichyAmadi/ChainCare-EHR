@@ -1,20 +1,43 @@
+import crypto from 'crypto';
 import path from 'path';
 
 const TN = process.env.FABRIC_TEST_NETWORK ?? '/root/ehr/fabric-samples/test-network';
 const orgPath = (org: string) => path.join(TN, 'organizations', 'peerOrganizations', `${org}.example.com`);
 
 const isProduction = process.env.NODE_ENV === 'production';
-const jwtSecret = process.env.JWT_SECRET ?? 'change-me-in-production-0123456789abcdef';
-const dataKeyHex = process.env.DATA_KEY_HEX ?? 'a3f1c2d4e5b6978877665544332211ffeeddccbbaa99887766554433221100aa';
+const envJwtSecret = process.env.JWT_SECRET?.trim() || undefined;
+const envDataKeyHex = process.env.DATA_KEY_HEX?.trim() || undefined;
 
-if (isProduction && (!process.env.JWT_SECRET || jwtSecret.length < 32 || jwtSecret.startsWith('change-me-in-production'))) {
-  throw new Error('Production requires a unique JWT_SECRET of at least 32 characters');
+function resolveJwtSecret(): string {
+  if (envJwtSecret) return envJwtSecret;
+  if (!isProduction) return 'change-me-in-production-0123456789abcdef';
+  // No secret configured: a fresh random 256-bit key is still secure, but every
+  // restart signs users out. Set JWT_SECRET to keep sessions across deploys.
+  console.warn('[config] JWT_SECRET is not set; using a random key for this process. '
+    + 'Users will be signed out on every restart. Set JWT_SECRET (64+ random characters) in your host settings.');
+  return crypto.randomBytes(48).toString('hex');
 }
-if (isProduction && (!process.env.DATA_KEY_HEX || !/^[\da-f]{64}$/i.test(dataKeyHex))) {
-  throw new Error('Production requires DATA_KEY_HEX to be exactly 64 hexadecimal characters');
-}
-if (isProduction && !process.env.MONGO_URI) {
-  throw new Error('Production requires an explicit persistent MONGO_URI');
+
+const jwtSecret = resolveJwtSecret();
+const dataKeyHex = envDataKeyHex ?? 'a3f1c2d4e5b6978877665544332211ffeeddccbbaa99887766554433221100aa';
+
+if (isProduction) {
+  const problems: string[] = [];
+  if (envJwtSecret && (envJwtSecret.length < 32 || envJwtSecret.startsWith('change-me-in-production'))) {
+    problems.push('JWT_SECRET must be a unique value of at least 32 characters (or remove it to use a random per-process key).');
+  }
+  if (!envDataKeyHex) {
+    problems.push('DATA_KEY_HEX is not set. Generate one with `openssl rand -hex 32` and store a backup: losing it makes stored records unreadable.');
+  } else if (!/^[\da-f]{64}$/i.test(envDataKeyHex)) {
+    problems.push(`DATA_KEY_HEX must be exactly 64 hexadecimal characters (got ${envDataKeyHex.length}).`);
+  }
+  if (!process.env.MONGO_URI?.trim()) {
+    problems.push('MONGO_URI is not set. Provide a persistent MongoDB connection string, e.g. from MongoDB Atlas.');
+  }
+  if (problems.length) {
+    throw new Error(`Missing or invalid production configuration:\n  - ${problems.join('\n  - ')}\n`
+      + 'Set these under Environment in your hosting dashboard (Render: Service > Environment), then redeploy.');
+  }
 }
 
 export interface OrgConfig {
