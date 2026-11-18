@@ -10,3 +10,4 @@
 *.log
 fabric-samples/
 __pycache__/
+.build-complete

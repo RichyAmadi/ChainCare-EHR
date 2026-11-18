@@ -1,0 +1,17 @@
+{
+  "name": "chaincare-ehr",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ChainCare EHR monorepo root: builds the React frontend and the Express API, then serves both from the API.",
+  "engines": {
+    "node": ">=22 <23"
+  },
+  "scripts": {
+    "postinstall": "node scripts/render-build.mjs",
+    "build": "node scripts/render-build.mjs",
+    "start": "npm --prefix backend run start:prod",
+    "dev:api": "npm --prefix backend run dev",
+    "dev:web": "npm --prefix frontend run dev",
+    "test": "npm --prefix backend test"
+  }
+}

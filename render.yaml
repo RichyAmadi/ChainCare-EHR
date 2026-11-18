@@ -3,8 +3,8 @@ services:
     name: chaincare-ehr
     runtime: node
     plan: 1c-2g
-    buildCommand: npm ci --prefix backend && npm ci --prefix frontend && npm --prefix frontend run build && npm --prefix backend run build
-    startCommand: npm --prefix backend run start:prod
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
     healthCheckPath: /api/health
     autoDeployTrigger: commit
     envVars:
